@@ -44,4 +44,4 @@ echo ""
 echo "This is test email"
 } | msmtp "usuresh123456@gmail.com"
 
-validate $? "Test email sent successfully"
+validate $? "Test email sent"
