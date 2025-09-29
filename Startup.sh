@@ -14,14 +14,27 @@ if [ $? -ne 0 ];then
     else
     echo "msmtp is already installed"
 fi
+
+validate(){
+if [ $? -ne 0]; then
+    echo "$2 is failure"
+    else
+    echo "$2 is success"
+fi
+}
+
+
 touch /etc/msmtprc
 cp .//msmtprc /etc/msmtprc
+validate $? "Copying File"
 
 chmod ugo+x /etc/msmtprc
+validate $? "Giving permission to msmtprc"
+
 
 touch /var/log/msmtp.log
 chmod ugo+x /var/log/msmtp.log
-
+validate $? "Giving permission to msmtp.log"
 
 {
 echo "To: usuresh123456@gmail.com"
@@ -30,3 +43,5 @@ echo "Content-Type: text/html"
 echo ""
 echo "This is test email"
 } | msmtp "usuresh123456@gmail.com"
+
+validate $? "Test email sent successfully"
