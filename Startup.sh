@@ -16,7 +16,7 @@ if [ $? -ne 0 ];then
 fi
 
 validate(){
-if [ $? -ne 0]; then
+if [ $? -ne 0 ]; then
     echo "$2 is failure"
     else
     echo "$2 is success"
