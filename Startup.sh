@@ -15,7 +15,7 @@ if [ $? -ne 0 ];then
     echo "msmtp is already installed"
 fi
 touch /etc/msmtprc
-cp /root/script_email/msmtprc /etc/msmtprc
+cp .//msmtprc /etc/msmtprc
 
 chmod ugo+x /etc/msmtprc
 
