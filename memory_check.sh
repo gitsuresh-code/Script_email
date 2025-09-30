@@ -10,10 +10,10 @@ MESSAGE=""
 AVAILABLE=$(free -h | awk '/^Mem:/ {print "Available:", $7}')
 
     if [ $DISK_USAGE -le $DISK_THRESHOLD ]; then
-        MESSAGE="Memory is low $R $AVAILABLE $N % <br>"
+        MESSAGE="Memory is low  $AVAILABLE <br>"
         echo -e "$MESSAGE"
         else
-         MESSAGE+="$G Memory looks good $G $AVAILABLE $N <br>"
+         MESSAGE+="Memory looks good$AVAILABLE  <br>"
          echo -e "$MESSAGE"
     fi
 
