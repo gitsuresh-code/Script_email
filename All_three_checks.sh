@@ -45,4 +45,4 @@ MESSAGE+="<p>Sender: $SENDER</p>"
 MESSAGE+="</body></html>"
 
 # Send email (ensure mail.sh handles HTML)
-sh mail.sh "$TO_ADDRESS" "$SUBJECT" "$MESSAGE" "$IP_ADDRESS" "$SENDER"
+sh /root/Script_email/mail.sh "$TO_ADDRESS" "$SUBJECT" "$MESSAGE" "$IP_ADDRESS" "$SENDER"
