@@ -12,7 +12,9 @@ AVAILABLE=$(free -h | awk '/^Mem:/ {print "Available:", $7}')
     if [ $DISK_USAGE -le $DISK_THRESHOLD ]; then
         MESSAGE="Memory is low $R $AVAILABLE $N" # escaping space
         echo -e "$MESSAGE"
+        else
+         MESSAGE="$G Memory looks good $MESSAGE $N"
     fi
-echo -e " $G $MESSAGE $N"
+
 
 sh mail.sh "usuresh123456@gmail.com" "Memory Check Alert" "Low Memory" "$MESSAGE" "$IP_ADDRESS" "Suresh DevOps"
