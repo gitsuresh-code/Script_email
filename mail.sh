@@ -1,18 +1,26 @@
 #!/bin/bash
+
+# Input arguments
 TO_ADDRESS=$1
 SUBJECT=$2
-ALERT_TYPE=$3
-MESSAGE=$4
-#FORMATTED_BODY=$(printf '%s\n' "$MESSAGE_BODY" | sed -e 's/[]\/$*.^[]/\\&/g')
+ALERT_TYPE=$3      # e.g., "System Resource Alert"
+MESSAGE=$4         # HTML message body from Script1
 IP_ADDRESS=$5
 TO_TEAM=$6
+SENDER=${7:-"DevOps Team"}   # Default sender if not provided
 
-FINAL_BODY=$(sed -e "s/TO_TEAM/$TO_TEAM/g" -e "s/ALERT_TYPE/$ALERT_TYPE/g" -e "s/IP_ADDRESS/$IP_ADDRESS/g" -e "s/MESSAGE/$MESSAGE/g" template.html)
+# Build HTML email body
+FINAL_BODY="<html><body>"
+FINAL_BODY+="<h3>$ALERT_TYPE - $IP_ADDRESS</h3>"
+FINAL_BODY+="$MESSAGE"
+FINAL_BODY+="<p>Sender: $SENDER</p>"
+FINAL_BODY+="</body></html>"
 
+# Send email using msmtp
 {
-echo "To: $TO_ADDRESS"
-echo "Subject: $SUBJECT"
-echo "Content-Type: text/html"
-echo ""
-echo "$FINAL_BODY"
+    echo "To: $TO_ADDRESS"
+    echo "Subject: $SUBJECT"
+    echo "Content-Type: text/html"
+    echo ""
+    echo "$FINAL_BODY"
 } | msmtp "$TO_ADDRESS"
