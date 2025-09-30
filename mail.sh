@@ -10,11 +10,11 @@ TO_TEAM=$6
 SENDER=${7:-"DevOps Team"}   # Default sender if not provided
 
 # Build HTML email body
-#FINAL_BODY="<html><body>"
-#FINAL_BODY+="<h3>$ALERT_TYPE - $IP_ADDRESS</h3>"
-#FINAL_BODY+="$MESSAGE"
-#FINAL_BODY+="<p>Sender: $SENDER</p>"
-#FINAL_BODY+="</body></html>"
+FINAL_BODY="<html><body>"
+FINAL_BODY+="<h3>$ALERT_TYPE - $IP_ADDRESS</h3>"
+FINAL_BODY+="$MESSAGE"
+FINAL_BODY+="<p>Sender: $SENDER</p>"
+FINAL_BODY+="</body></html>"
 
 # Send email using msmtp
 
@@ -23,6 +23,6 @@ SENDER=${7:-"DevOps Team"}   # Default sender if not provided
     echo "Subject: $SUBJECT"
     echo "Content-Type: text/html"
     echo ""
-    echo "$MESSAGE"
+    echo "$FINAL_BODY"
 } | msmtp "$TO_ADDRESS"
 
