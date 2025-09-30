@@ -4,7 +4,7 @@
 TO_ADDRESS="usuresh123456@gmail.com"
 SUBJECT="System Resource Alert"
 SENDER="Suresh DevOps"
-IP_ADDRESS=$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)
+IP_ADDRESS=$(curl http://169.254.169.254/latest/meta-data/local-ipv4)
 
 # Thresholds
 MEM_THRESHOLD=500        # in MB
